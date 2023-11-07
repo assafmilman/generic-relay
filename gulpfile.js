@@ -10,9 +10,9 @@
 'use strict';
 
 var babel = require('gulp-babel');
-var babelPluginDEV = require('fbjs-scripts/babel/dev-expression');
-var babelPluginModules = require('fbjs-scripts/babel/rewrite-modules');
-var babelPluginAutoImporter = require('fbjs-scripts/babel/auto-importer');
+var babelPluginDEV = require('babel-preset-fbjs/plugins/dev-expression'); //require('fbjs-scripts/babel/dev-expression');
+var babelPluginModules = require('babel-preset-fbjs/plugins/rewrite-modules'); //require('fbjs-scripts/babel/rewrite-modules');
+var babelPluginAutoImporter = require('babel-preset-fbjs/plugins/auto-importer'); //require('fbjs-scripts/babel/auto-importer');
 var del = require('del');
 var derequire = require('gulp-derequire');
 var flatten = require('gulp-flatten');
@@ -148,18 +148,18 @@ gulp.task('dist', ['modules'], function() {
     .pipe(gulp.dest(paths.dist));
 });
 
-gulp.task('dist:min', ['modules'], function() {
-  var distOpts = {
-    debug: false,
-    output: 'relay.min.js',
-  };
-  return gulp.src(paths.entry)
-    .pipe(buildDist(distOpts))
-    .pipe(header(PRODUCTION_HEADER, {
-      version: process.env.npm_package_version,
-    }))
-    .pipe(gulp.dest(paths.dist));
-});
+// gulp.task('dist:min', ['modules'], function() {
+//   var distOpts = {
+//     debug: false,
+//     output: 'relay.min.js',
+//   };
+//   return gulp.src(paths.entry)
+//     .pipe(buildDist(distOpts))
+//     .pipe(header(PRODUCTION_HEADER, {
+//       version: process.env.npm_package_version,
+//     }))
+//     .pipe(gulp.dest(paths.dist));
+// });
 
 // gulp.task('website:check-version', function(cb) {
 //   var version = require('./package').version;
